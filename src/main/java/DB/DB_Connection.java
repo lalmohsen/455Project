@@ -5,14 +5,23 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DB_Connection {
-	String URL = "jdbc:mysql://localhost:3306/fcit_events?useSSL=false";
+	/*String URL = "jdbc:mysql://localhost:3306/fcit_events?useSSL=false";
 	String USERNAME = "CPIT455";
 	String PASSWORD = "Cpit1234";
 	Connection connection;
 	String sqlQuery = "";
 	PreparedStatement preparedStmt = null;
 	ResultSet rs = null;
-	Statement stmt = null;
+	Statement stmt = null;*/
+	
+	String URL = "jdbc:mysql://localhost:3306/eventsystem schema?useSSL=false";
+	String USERNAME = "root";
+	String PASSWORD = "mysql";
+	Connection connection;
+	String sqlQuery = "";
+	PreparedStatement preparedStmt = null;
+	ResultSet resultSet = null;
+	ResultSet rs= null;
 
 	public DB_Connection() {
 		try {
@@ -60,6 +69,25 @@ public class DB_Connection {
 		} catch (SQLException ex) {
 			Logger.getLogger(DB_Connection.class.getName()).log(Level.SEVERE, null, ex);
 		}
+	}
+	
+	
+	public boolean addEvent(String NameEvent, String DateEvent, String NameOrganizer , String N_O_Paticapants) {
+
+		var N_O_Patica = Integer.parseInt(N_O_Paticapants);
+		sqlQuery = "insert into event_table (NameEvent,DateEvent,NameOrganizer,Capacity)values('"+ NameEvent + "','" + DateEvent + "','" + 
+		NameOrganizer+ "','" + N_O_Patica +"');";
+		try {
+
+			Statement stmt = connection.createStatement();
+			stmt.execute(sqlQuery);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e);
+			return false;
+		}
+		return true;
 	}
 		
 }
