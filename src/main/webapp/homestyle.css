@@ -281,3 +281,7 @@ input#img-6:checked ~ .carousel-dots label#img-dot-6 {
 
 
 input:checked + .slide-container .nav label { display: block; }
+
+
+
+#dt{text-indent: -500px;height:25px; width:200px; text-align: left ;}

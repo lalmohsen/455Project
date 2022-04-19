@@ -18,12 +18,26 @@
 		<img src="img/fcitlogo.jpg" alt="logo"> <a href="#default"
 			class="logo">FCIT EVENTS</a>
 		<div class="header-right">
-			<a class="active" href="#home">Home</a> <a href="#contact">Contact
-				Us</a> <a href="#about">About Us</a>
-		<div class="header-right"> 
 			<a href="ModifyForm.jsp">Modify  Events </a> 
 			<a href="AddEventForm.jsp"> Add Events </a>
 		</div>
 	</div>
+	
+		<form name="AddEvent" action="AddEvent.jsp" method="POST">
+		<h3>Form to add events </h3>
+		<p>Fill  all fields in order to add the event correctly</p>
+		
+		<label>Name of Event:</label> 
+		<input type="text" name="NameEvent" value="" size="20">
+		<label>Date of Event:</label> 
+  
+    <input type="date" name="DateEvent" 
+       value="" min="1997-01-01" max="2030-12-31">
+				<label>Name Organizer:</label> 
+		<input type="text" name="NameOrganizer" value="" size="20">	
+		<label>Number of N_O_Paticapants:</label> 
+		<input type="text" name="Capacity" value="" size="20">	
+		<button>Submit</button>		
+	</form>	
 </body>
 </html>

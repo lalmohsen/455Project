@@ -1,6 +1,9 @@
 package DB;
 
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -72,7 +75,7 @@ public class DB_Connection {
 	}
 	
 	
-	public boolean addEvent(String NameEvent, String DateEvent, String NameOrganizer , String N_O_Paticapants) {
+	public boolean addEvent(String NameEvent, String DateEvent, String NameOrganizer , String N_O_Paticapants) throws ParseException {
 
 		var N_O_Patica = Integer.parseInt(N_O_Paticapants);
 		sqlQuery = "insert into event_table (NameEvent,DateEvent,NameOrganizer,Capacity)values('"+ NameEvent + "','" + DateEvent + "','" + 
@@ -89,5 +92,80 @@ public class DB_Connection {
 		}
 		return true;
 	}
+	
+	
+	public ResultSet getUser(int ID) {
+		sqlQuery = "SELECT * FROM event_table WHERE IDE= " + ID;
+		try {
+			preparedStmt = connection.prepareStatement(sqlQuery);
+			resultSet = preparedStmt.executeQuery();
+
+		} catch (SQLException e) {
+			System.out.println(e+"TTTTTTTTTTTTTT");
+		}
+		return resultSet;
+	}
+	
+	
+	public ResultSet getEvent() {
+		sqlQuery = "SELECT * FROM event_table ; ";
+		try {
+			preparedStmt = connection.prepareStatement(sqlQuery);
+			resultSet = preparedStmt.executeQuery();
+
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+		return resultSet;
+	}
+	
+
+
+	public int updateUser(String NameEvent, String DateEvent, String NameOrganizer , String Capacity , String IDE) throws ParseException {
+		var ide = Integer.parseInt(IDE);
+		var capacity = Integer.parseInt(Capacity);
+		sqlQuery = "Update event_table set NameEvent = ? , DateEvent = ? , NameOrganizer = ? , Capacity = ? "
+		 		+ "WHERE IDE = " + ide;
+		 int i=0;
+		 try{	 
+		 preparedStmt = connection.prepareStatement(sqlQuery);
+		 preparedStmt.setString(1,NameEvent);
+		 preparedStmt.setString(2, DateEvent);
+	     preparedStmt.setString(3, NameOrganizer);
+		 preparedStmt.setInt(4, capacity);
+		 
+		 
+		 i = preparedStmt.executeUpdate();
+
+		 }
+		 catch(SQLException e){
+		 System.out.print(e);
+		 e.printStackTrace();
+		 }
+
+		 return i;
+		 }
+	
+	
+	
+	 public int deleteUser(int ID) {
+		 sqlQuery = "Delete from event_table WHERE IDE = " + ID;
+		 int i=0;
+		 try{
+		 preparedStmt = connection.prepareStatement(sqlQuery);
+		 i = preparedStmt.executeUpdate();
+		 }
+		 catch(SQLException e){
+		 System.out.print(e);
+		 e.printStackTrace();
+		 }
+
+		 return i;
+		 }
+	 
+	 
+	 
+	 
+	 
 		
 }

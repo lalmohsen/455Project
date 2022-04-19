@@ -16,8 +16,8 @@
 		<img src="img/fcitlogo.jpg" alt="logo"> <a href="#default"
 			class="logo">FCIT EVENTS</a>
 		<div class="header-right">
-			<a class="active" href="#home">Home</a> <a href="#contact">Contact
-				Us</a> <a href="#about">About Us</a>
+			<a href="ModifyForm.jsp">Modify  Events </a> 
+			<a href="AddEventForm.jsp"> Add Events </a>
 		</div>
 	</div>
 	<form name="SignupForm" action="CreateAccount.jsp" method="POST">
