@@ -90,4 +90,14 @@ public class DB_Connection {
 		return true;
 	}
 		
+	
+	 public ResultSet getEvents() {
+		 sqlQuery = "SELECT * FROM event_table;";
+		 try{
+		 preparedStmt = connection.prepareStatement(sqlQuery);
+		 resultSet = preparedStmt.executeQuery();
+		 }catch(SQLException e){}
+		 return resultSet;
+		 }
+	
 }
