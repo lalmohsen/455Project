@@ -168,4 +168,14 @@ public class DB_Connection {
 	 
 	 
 		
+	
+	 public ResultSet getEvents() {
+		 sqlQuery = "SELECT * FROM event_table;";
+		 try{
+		 preparedStmt = connection.prepareStatement(sqlQuery);
+		 resultSet = preparedStmt.executeQuery();
+		 }catch(SQLException e){}
+		 return resultSet;
+		 }
+	
 }
