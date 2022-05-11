@@ -6,6 +6,9 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
+
+import org.apache.tomcat.util.file.Matcher;
 
 public class DB_Connection {
 	/*String URL = "jdbc:mysql://localhost:3306/fcit_events?useSSL=false";
@@ -78,11 +81,11 @@ public class DB_Connection {
 	public boolean addEvent(String NameEvent, String DateEvent, String NameOrganizer , String N_O_Paticapants) throws ParseException {
 
 		var N_O_Patica = Integer.parseInt(N_O_Paticapants);
+		
 		sqlQuery = "insert into event_table (NameEvent,DateEvent,NameOrganizer,Capacity)values('"+ NameEvent + "','" + DateEvent + "','" + 
 		NameOrganizer+ "','" + N_O_Patica +"');";
 		try {
-
-			Statement stmt = connection.createStatement();
+            Statement stmt = connection.createStatement();
 			stmt.execute(sqlQuery);
 
 		} catch (Exception e) {
@@ -178,4 +181,94 @@ public class DB_Connection {
 		 return resultSet;
 		 }
 	
+	 
+	 
+	public  void cheackEvent () {
+		
+	}
+	 
+	
+	
+    static public boolean isDouble(String number) {
+        try {
+            Double.parseDouble(number);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
+    static public boolean isIntger(String number) {
+        try {
+            Integer.parseInt(number);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
+    static public boolean isonlyalphabets(String str) {
+        return str.matches("[a-zA-Z]+");
+    }
+
+    static public boolean isValdtionEmail(String str) {
+
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+↵\n"
+                + ")*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$");
+
+        java.util.regex.Matcher matcher = pattern.matcher(str);
+        return matcher.matches();
+
+    }
+
+    static public String RemoveSpece(String str) {
+        return str.replaceAll(" ", "");
+    }
+
+     public boolean validatesaudimobilenumbers(String str) {
+        Pattern pattern = Pattern.compile(
+                "\\+9665\\d{8}|05\\d{8}|\\+1\\(\\d{3}\\)\\d{3}-\\d{4}|\\+1\\d{10}|\\d{3}-\\d{3}-\\d{4}"
+        );
+        java.util.regex.Matcher matcher = pattern.matcher(str);
+        return matcher.matches();
+    }
+
+    public  boolean isValidID(String str) {
+
+        Pattern p = Pattern.compile("^\\d{10}$");
+        java.util.regex.Matcher m = p.matcher(str);
+        return (m.matches());
+    }
+    
+    
+    public boolean onlyDigits(String str)
+    {
+       // https://www.geeksforgeeks.org/how-to-check-if-string-contains-only-digits-in-java/
+        // Traverse the string from
+        // start to end
+        for (int i = 0; i < str.length(); i++) {
+  
+            // Check if character is
+            // digit from 0-9
+            // then return true
+            // else false
+            if (str.charAt(i) >= '0'
+                && str.charAt(i) <= '9') {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    //________________________________________________________________________________________
+
+	 
+	 
+	 
+	 
+	 
 }
+

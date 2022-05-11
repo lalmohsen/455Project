@@ -156,6 +156,20 @@ button{
     margin-left: 15%;
     margin-right: 15%;
 }
+.body h3{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;}
+   
+   thead h3{
+   
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+   }
+
 
 ul.slides {
     display: block;
